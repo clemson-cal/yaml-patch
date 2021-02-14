@@ -1,6 +1,6 @@
 [package]
 name        = "yaml-patch"
-version     = "0.1.0"
+version     = "0.1.1"
 edition     = "2018"
 description = "Merge YAML values together to enable hierarchical configurations"
 authors     = ["J. Zrake"]

@@ -13,7 +13,7 @@ This crate extends any type which implements `serde::Serialize` and `serde::Dese
 
 For example, given a type
 
-```Rust
+```rust
 #[derive(Serialize, Deserialize)]
 struct Configuration {
    a: f64,
@@ -23,7 +23,7 @@ struct Configuration {
 
 you can update the data members of an instance from a `serde_yaml::Value::Mapping` with optional keys `"a"` or `"b"`. You can also patch an instance from a file (or anything `std::io::Read`) with valid YAML content:
 
-```Rust
+```rust
 let file = File::open("config.yaml")?;
 config.patch_from_reader(file)?;
 ```
