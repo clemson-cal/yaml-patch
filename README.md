@@ -28,7 +28,11 @@ let file = File::open("config.yaml")?;
 config.patch_from_reader(file)?;
 ```
 
-The crate also supports a key-path style YAML sytax syntax extension: for example `event.patch_from_key_val("date.year=2021")`.
+The crate also supports a key-path style YAML sytax syntax extension: for example
+
+```rust
+event.patch_from_key_val("date.year=2021")?;
+```
 
 
 ## Usage
