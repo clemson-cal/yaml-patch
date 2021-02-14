@@ -107,9 +107,9 @@ pub trait Patch {
 
 
 // ============================================================================
-impl<T> Patch for T where T: Clone + Serialize + for<'de> Deserialize<'de> {
+impl<T> Patch for T where T: Serialize + for<'de> Deserialize<'de> {
     fn patch_from_value(&mut self, patch_value: &Value) -> serde_yaml::Result<()> {
-        let self_value = to_value(self.clone())?;
+        let self_value = to_value(&self)?;
         let merged_self_value = merge_value(&self_value, &patch_value);
         let merged_self: T = from_value(merged_self_value)?;
         *self = merged_self;
@@ -122,13 +122,13 @@ impl<T> Patch for T where T: Clone + Serialize + for<'de> Deserialize<'de> {
 
 // ============================================================================
 mod test {
-    #[derive(Clone, serde::Serialize, serde::Deserialize)]
+    #[derive(serde::Serialize, serde::Deserialize)]
     struct Inner {
         a: String,
         b: String,
     }
 
-    #[derive(Clone, serde::Serialize, serde::Deserialize)]
+    #[derive(serde::Serialize, serde::Deserialize)]
     struct Config {
         x: f64,
         y: usize,
